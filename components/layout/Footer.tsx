@@ -15,20 +15,24 @@ export function Footer() {
               Tell us the problem and we will tell you if content can fix it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                className="bg-accent-1 text-black hover:bg-white"
-              >
-                Submit a Brief
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-off-white text-off-white hover:bg-off-white hover:text-black"
-              >
-                Book a Call
-              </Button>
+              <Link href="/brief">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="bg-accent-1 text-black hover:bg-white"
+                >
+                  Submit a Brief
+                </Button>
+              </Link>
+              <Link href="https://wa.me/codezela/" target="_blank">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-off-white text-off-white hover:bg-off-white hover:text-black"
+                >
+                  Chat on WhatsApp
+                </Button>
+              </Link>
             </div>
             <p className="mt-4 text-sm text-soft-grey">
               We reply fast on WhatsApp.

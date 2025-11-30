@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import dynamic from "next/dynamic";
@@ -83,10 +84,14 @@ export function Hero() {
             </h2>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg">Book a Project Call</Button>
-              <Button variant="outline" size="lg">
-                Watch Our Reel
-              </Button>
+              <Link href="https://cal.com/codezela/" target="_blank">
+                <Button size="lg">Book a Call</Button>
+              </Link>
+              <Link href="/brief">
+                <Button variant="outline" size="lg">
+                  Submit a Brief
+                </Button>
+              </Link>
             </div>
           </div>
 

@@ -42,9 +42,11 @@ export function Header() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <Button className="hidden md:block" size="sm">
-            Book a Project
-          </Button>
+          <Link href="/brief">
+            <Button className="hidden md:block" size="sm">
+              Book a Project
+            </Button>
+          </Link>
 
           <button
             className="md:hidden p-2 hover:bg-soft-grey transition-colors"
@@ -74,9 +76,11 @@ export function Header() {
             {item.name}
           </Link>
         ))}
-        <Button size="lg" className="mt-8" onClick={() => setIsMenuOpen(false)}>
-          Book a Project
-        </Button>
+        <Link href="/brief" onClick={() => setIsMenuOpen(false)}>
+          <Button size="lg" className="mt-8">
+            Book a Project
+          </Button>
+        </Link>
       </div>
     </header>
   );

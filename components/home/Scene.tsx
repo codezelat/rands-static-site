@@ -1,161 +1,117 @@
-"use client";
-
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, Suspense, useState } from "react";
-import { Group, Vector3 } from "three";
+import { Group } from "three";
 import {
   Environment,
   Float,
-  PerspectiveCamera,
   ContactShadows,
-  Html,
   Grid,
+  MeshDistortMaterial,
+  Sparkles,
+  Stars,
 } from "@react-three/drei";
+import * as THREE from "three";
 
-function DroidHead({ mouse }: { mouse: React.MutableRefObject<Vector3> }) {
-  const headRef = useRef<Group>(null);
+function RandsCore() {
+  const groupRef = useRef<Group>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const materialRef = useRef<any>(null);
+  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
 
   useFrame((state) => {
-    if (headRef.current) {
-      // Smooth look-at
+    const time = state.clock.getElapsedTime();
+
+    if (groupRef.current) {
+      // Mouse interaction for rotation
       const targetX = (state.mouse.x * Math.PI) / 4;
       const targetY = (state.mouse.y * Math.PI) / 4;
 
-      headRef.current.rotation.y +=
-        (targetX - headRef.current.rotation.y) * 0.1;
-      headRef.current.rotation.x +=
-        (-targetY - headRef.current.rotation.x) * 0.1;
+      groupRef.current.rotation.y +=
+        (targetX - groupRef.current.rotation.y) * 0.1;
+      groupRef.current.rotation.x +=
+        (-targetY - groupRef.current.rotation.x) * 0.1;
+
+      // Idle rotation
+      groupRef.current.rotation.z = time * 0.1;
+    }
+
+    // Smoothly interpolate distortion and speed
+    if (materialRef.current) {
+      materialRef.current.distort = THREE.MathUtils.lerp(
+        materialRef.current.distort,
+        hovered ? 0.6 : 0.3,
+        0.05
+      );
+      materialRef.current.speed = THREE.MathUtils.lerp(
+        materialRef.current.speed,
+        hovered ? 4 : 2,
+        0.05
+      );
     }
   });
 
   return (
-    <group ref={headRef} position={[0, 1.2, 0]}>
-      {/* Main Head Shape */}
-      <mesh>
-        <boxGeometry args={[1.2, 0.8, 1]} />
-        <meshStandardMaterial color="#1a1a1a" roughness={0.2} metalness={0.8} />
-      </mesh>
-
-      {/* Face Plate */}
-      <mesh position={[0, 0, 0.51]}>
-        <planeGeometry args={[1, 0.6]} />
-        <meshStandardMaterial color="#000000" roughness={0.2} metalness={1} />
-      </mesh>
-
-      {/* Eyes (Neon) */}
-      <mesh position={[-0.25, 0.05, 0.52]}>
-        <planeGeometry args={[0.3, 0.1]} />
-        <meshBasicMaterial color="#ccff00" toneMapped={false} />
-      </mesh>
-      <mesh position={[0.25, 0.05, 0.52]}>
-        <planeGeometry args={[0.3, 0.1]} />
-        <meshBasicMaterial color="#ccff00" toneMapped={false} />
-      </mesh>
-
-      {/* Antenna */}
-      <mesh position={[0.4, 0.5, 0]}>
-        <cylinderGeometry args={[0.05, 0.05, 0.6]} />
-        <meshStandardMaterial color="#333" />
-      </mesh>
-      <mesh position={[0.4, 0.8, 0]}>
-        <sphereGeometry args={[0.1]} />
-        <meshBasicMaterial color="#ff00ff" toneMapped={false} />
-      </mesh>
-    </group>
-  );
-}
-
-function DroidBody() {
-  return (
-    <group position={[0, -0.5, 0]}>
-      {/* Torso */}
-      <mesh position={[0, 0.5, 0]}>
-        <cylinderGeometry args={[0.6, 0.4, 1.5, 32]} />
-        <meshStandardMaterial color="#2a2a2a" roughness={0.3} metalness={0.6} />
-      </mesh>
-
-      {/* Chest Light */}
-      <mesh position={[0, 0.8, 0.55]}>
-        <circleGeometry args={[0.15]} />
-        <meshBasicMaterial color="#ff6600" toneMapped={false} />
-      </mesh>
-
-      {/* Branding Text */}
-      <Html
-        position={[0, 0.2, 0.6]}
-        transform
-        occlude
-        scale={0.2}
-        style={{ pointerEvents: "none" }}
-      >
-        <div className="font-display font-bold text-white bg-black px-2 border border-white/20">
-          RANDS-01
-        </div>
-      </Html>
-    </group>
-  );
-}
-
-function DroidArms() {
-  const leftArm = useRef<Group>(null);
-  const rightArm = useRef<Group>(null);
-
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    if (leftArm.current) leftArm.current.position.y = Math.sin(time * 2) * 0.1;
-    if (rightArm.current)
-      rightArm.current.position.y = Math.cos(time * 2) * 0.1;
-  });
-
-  return (
-    <>
-      <group ref={leftArm} position={[-0.9, 0, 0]}>
-        <mesh>
-          <sphereGeometry args={[0.3]} />
-          <meshStandardMaterial
-            color="#ccff00"
-            roughness={0.1}
-            metalness={0.5}
-          />
-        </mesh>
-      </group>
-      <group ref={rightArm} position={[0.9, 0, 0]}>
-        <mesh>
-          <sphereGeometry args={[0.3]} />
-          <meshStandardMaterial
-            color="#ff00ff"
-            roughness={0.1}
-            metalness={0.5}
-          />
-        </mesh>
-      </group>
-    </>
-  );
-}
-
-function RandsDroid() {
-  const mouse = useRef(new Vector3());
-
-  return (
-    <Float
-      speed={2}
-      rotationIntensity={0.2}
-      floatIntensity={0.5}
-      floatingRange={[-0.2, 0.2]}
+    <group
+      ref={groupRef}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      onClick={() => setActive(!active)}
     >
-      <group>
-        <DroidHead mouse={mouse} />
-        <DroidBody />
-        <DroidArms />
-      </group>
-    </Float>
+      {/* Central Liquid Core */}
+      <mesh scale={active ? 1.2 : 1}>
+        <icosahedronGeometry args={[1, 4]} />
+        <MeshDistortMaterial
+          ref={materialRef}
+          color={active ? "#ff00ff" : "#ccff00"}
+          envMapIntensity={1}
+          clearcoat={1}
+          clearcoatRoughness={0}
+          metalness={1}
+          distort={0.3} // Initial value
+          speed={2} // Initial value
+        />
+      </mesh>
+
+      {/* Orbital Ring 1 */}
+      <mesh rotation={[Math.PI / 3, 0, 0]}>
+        <torusGeometry args={[1.8, 0.02, 16, 100]} />
+        <meshStandardMaterial
+          color="#ffffff"
+          emissive="#ffffff"
+          emissiveIntensity={2}
+          toneMapped={false}
+        />
+      </mesh>
+
+      {/* Orbital Ring 2 (Cross) */}
+      <mesh rotation={[-Math.PI / 3, 0, 0]}>
+        <torusGeometry args={[2.2, 0.02, 16, 100]} />
+        <meshStandardMaterial
+          color="#ffffff"
+          emissive="#ffffff"
+          emissiveIntensity={0.5}
+          wireframe
+        />
+      </mesh>
+
+      {/* Floating Particles */}
+      <Sparkles
+        count={50}
+        scale={4}
+        size={4}
+        speed={0.4}
+        opacity={0.5}
+        color="#ccff00"
+      />
+    </group>
   );
 }
 
 export default function Scene() {
   return (
     <div className="w-full h-full min-h-[400px] relative bg-[#111]">
-      <Canvas dpr={[1, 2]} shadows camera={{ position: [0, 2, 6], fov: 45 }}>
+      <Canvas dpr={[1, 2]} shadows camera={{ position: [0, 0, 6], fov: 45 }}>
         <Suspense fallback={null}>
           <color attach="background" args={["#111"]} />
           <fog attach="fog" args={["#111", 5, 20]} />
@@ -172,12 +128,29 @@ export default function Scene() {
           <pointLight position={[-10, 0, -10]} intensity={2} color="#ccff00" />
           <pointLight position={[10, 0, 10]} intensity={2} color="#ff00ff" />
 
-          {/* Character */}
-          <RandsDroid />
+          {/* Core Scene */}
+          <Float
+            speed={2}
+            rotationIntensity={0.5}
+            floatIntensity={0.5}
+            floatingRange={[-0.2, 0.2]}
+          >
+            <RandsCore />
+          </Float>
 
           {/* Environment */}
+          <Stars
+            radius={100}
+            depth={50}
+            count={5000}
+            factor={4}
+            saturation={0}
+            fade
+            speed={1}
+          />
+
           <Grid
-            position={[0, -2, 0]}
+            position={[0, -3, 0]}
             args={[20, 20]}
             cellSize={1}
             cellThickness={1}
@@ -190,7 +163,7 @@ export default function Scene() {
             infiniteGrid
           />
           <ContactShadows
-            position={[0, -2, 0]}
+            position={[0, -3, 0]}
             opacity={0.6}
             scale={10}
             blur={2}
