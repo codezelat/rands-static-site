@@ -45,13 +45,19 @@ export function Hero() {
   }, []);
 
   const splitText = (text: string) => {
-    return text.split("").map((char, i) => (
-      <span
-        key={i}
-        className="char inline-block"
-        style={{ minWidth: char === " " ? "0.3em" : "0" }}
-      >
-        {char}
+    const words = text.split(" ");
+    return words.map((word, i) => (
+      <span key={i} className="inline-block whitespace-nowrap">
+        {word.split("").map((char, j) => (
+          <span key={j} className="char inline-block">
+            {char}
+          </span>
+        ))}
+        {i < words.length - 1 && (
+          <span className="char inline-block" style={{ minWidth: "0.3em" }}>
+            &nbsp;
+          </span>
+        )}
       </span>
     ));
   };

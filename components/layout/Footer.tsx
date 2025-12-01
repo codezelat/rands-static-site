@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/Button";
 
 export function Footer() {
   return (
-    <footer className="bg-carbon-black text-off-white border-thick-top border-off-white py-20">
+    <footer className="bg-carbon-black text-off-white border-thick-top border-off-white py-12 md:py-20">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12 md:mb-20">
           <div className="max-w-2xl">
             <div className="mb-8">
               <Image
@@ -14,10 +14,10 @@ export function Footer() {
                 alt="RANDS Logo"
                 width={300}
                 height={100}
-                className="h-24 w-auto object-contain"
+                className="h-16 md:h-24 w-auto object-contain"
               />
             </div>
-            <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-none">
+            <h2 className="text-4xl md:text-7xl font-display font-bold mb-6 leading-none">
               GOT A BRAND THAT NEEDS <span className="text-accent-1">RIZZ</span>{" "}
               AND <span className="text-accent-2">SLAY?</span>
             </h2>
@@ -49,7 +49,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 text-right">
+          <div className="flex flex-col gap-4 text-left md:text-right">
             <Link
               href="#work"
               className="text-2xl font-bold hover:text-accent-1 transition-colors"
@@ -77,7 +77,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-end border-t border-soft-grey/20 pt-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-t border-soft-grey/20 pt-8">
           <div className="text-sm text-soft-grey">
             © {new Date().getFullYear()} RANDS. ALL RIGHTS RESERVED.
           </div>

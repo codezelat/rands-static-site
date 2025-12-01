@@ -40,7 +40,7 @@ export function Testimonials() {
 
   return (
     <Section className="bg-accent-3 py-20" noBorder>
-      <div className="mb-12 flex flex-col md:flex-row justify-between items-end gap-8">
+      <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
         <h2 className="text-4xl md:text-6xl font-display font-bold leading-none">
           WHAT THE GROWN UPS <br /> SAID AFTERWARDS.
         </h2>
