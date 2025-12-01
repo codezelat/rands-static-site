@@ -2,6 +2,7 @@
 
 import { Section } from "@/components/ui/Section";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
 
 const works = [
   {
@@ -63,14 +64,20 @@ export function WorkGrid() {
           <div
             key={index}
             className={cn(
-              "group relative border-thick p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 box-shadow-hard hover:shadow-none overflow-hidden bg-cover bg-center",
+              "group relative border-thick p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 box-shadow-hard hover:shadow-none overflow-hidden",
               work.size === "large" && "md:col-span-2",
               work.size === "tall" && "md:row-span-2"
             )}
-            style={{ backgroundImage: `url(${work.image})` }}
           >
+            <Image
+              src={work.image}
+              alt={`${work.client} - ${work.title}`}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
             {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500 z-0" />
 
             {/* Hover Reveal Content (Glitch Effect) */}
             <div

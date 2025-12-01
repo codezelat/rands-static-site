@@ -82,14 +82,29 @@ export function Footer() {
             © {new Date().getFullYear()} RANDS. ALL RIGHTS RESERVED.
           </div>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-accent-1 transition-colors">
-              INSTAGRAM
-            </a>
-            <a href="#" className="hover:text-accent-1 transition-colors">
-              TIKTOK
-            </a>
-            <a href="#" className="hover:text-accent-1 transition-colors">
+            <a
+              href="https://www.linkedin.com/company/rands-lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-1 transition-colors"
+            >
               LINKEDIN
+            </a>
+            <a
+              href="https://www.facebook.com/rands.lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-1 transition-colors"
+            >
+              FACEBOOK
+            </a>
+            <a
+              href="https://www.instagram.com/rands.lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-1 transition-colors"
+            >
+              INSTAGRAM
             </a>
           </div>
         </div>
