@@ -19,6 +19,21 @@ export const metadata: Metadata = {
   title: "Rizz & Slay | Culture First Content Studio",
   description:
     "Rizz and Slayy is the culture first content and marketing studio that makes brands look like they belong on the For You page.",
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/images/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Rizz & Slay Logo",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

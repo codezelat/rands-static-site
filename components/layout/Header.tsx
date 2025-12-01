@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -20,11 +21,15 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-thick-bottom transition-transform duration-300">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-3xl font-display font-bold tracking-tighter hover:text-accent-2 transition-colors"
-        >
-          RANDS
+        <Link href="/" className="hover:opacity-80 transition-opacity">
+          <Image
+            src="/images/logo.png"
+            alt="RANDS Logo"
+            width={240}
+            height={80}
+            className="h-20 w-auto object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop Nav */}
