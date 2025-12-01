@@ -52,7 +52,7 @@ export function WorkGrid() {
       <div className="mb-16">
         <h2 className="text-5xl md:text-7xl font-display font-bold leading-none mb-4">
           CAMPAIGNS THAT <br />
-          <span className="text-transparent stroke-text hover:text-accent-1 transition-colors duration-300 cursor-default">
+          <span className="text-accent-3 hover:text-accent-1 transition-colors duration-300 cursor-default">
             ACTUALLY DID NUMBERS.
           </span>
         </h2>
