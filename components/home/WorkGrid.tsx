@@ -36,14 +36,14 @@ const works = [
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
   },
   {
-    client: "RIZZ GAMES",
-    title: "TRENDSETTER RIZZ",
-    tagline: "LEVEL UP YOUR CHARISMA",
-    metric: "7M VIEWS",
+    client: "ECO VOLT",
+    title: "SUSTAINABLE SURGE",
+    tagline: "POWER THE PLANET",
+    metric: "3M SHARES",
     color: "bg-off-white",
     size: "normal",
     image:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80",
+      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80",
   },
 ];
 
