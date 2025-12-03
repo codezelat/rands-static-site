@@ -26,14 +26,14 @@ const works = [
       "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80",
   },
   {
-    client: "CRUNCHY BITES",
-    title: "SNACK ATTACK SLAY",
-    tagline: "CRUNCH LIKE A BOSS",
-    metric: "#1 VIRAL",
+    client: "FLEX GYM",
+    title: "FIT FLEX FRENZY",
+    tagline: "FLEX YOUR WAY",
+    metric: "6M VIEWS",
     color: "bg-accent-3",
     size: "normal",
     image:
-      "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=800&q=80",
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
   },
   {
     client: "RIZZ GAMES",
