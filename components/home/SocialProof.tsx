@@ -5,22 +5,22 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const clients = [
-  "NIKE",
-  "ADIDAS",
-  "SPOTIFY",
-  "NETFLIX",
-  "RED BULL",
+  "GLOW COSMETICS",
+  "VIBE STREETWEAR",
+  "FLEX GYM",
+  "ECO VOLT",
   "TIKTOK",
   "INSTAGRAM",
   "YOUTUBE",
-  "NIKE",
-  "ADIDAS",
   "SPOTIFY",
-  "NETFLIX",
-  "RED BULL",
+  "GLOW COSMETICS",
+  "VIBE STREETWEAR",
+  "FLEX GYM",
+  "ECO VOLT",
   "TIKTOK",
   "INSTAGRAM",
   "YOUTUBE",
+  "SPOTIFY",
 ];
 
 export function SocialProof() {
