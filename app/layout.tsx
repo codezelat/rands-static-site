@@ -94,6 +94,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} ${oswald.variable} antialiased bg-background text-foreground font-sans selection:bg-accent-1 selection:text-black`}
+        suppressHydrationWarning={true}
       >
         <GoogleAnalytics />
         <ReactLenis root>{children}</ReactLenis>

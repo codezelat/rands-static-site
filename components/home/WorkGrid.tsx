@@ -6,44 +6,44 @@ import Image from "next/image";
 
 const works = [
   {
-    client: "NIKE",
-    title: "AIR MAX DAY",
-    tagline: "FROM UNKNOWN TO SOLD OUT",
-    metric: "4.2M VIEWS",
+    client: "GLOW COSMETICS",
+    title: "GLOW-UP GLOW",
+    tagline: "SLAY YOUR SKIN",
+    metric: "5M VIEWS",
     color: "bg-accent-1",
     size: "large", // spans 2 cols
     image:
-      "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800&q=80",
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
   },
   {
-    client: "SPOTIFY",
-    title: "WRAPPED REMIX",
-    tagline: "YOUR YEAR IN SOUND",
-    metric: "12M SHARES",
+    client: "VIBE STREETWEAR",
+    title: "VIBE CHECK VIBES",
+    tagline: "CHECK YOUR VIBE",
+    metric: "10M SHARES",
     color: "bg-accent-2",
     size: "tall", // spans 2 rows
     image:
-      "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=800&q=80",
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80",
   },
   {
-    client: "NETFLIX",
-    title: "SQUID GAME IRL",
-    tagline: "WOULD YOU SURVIVE?",
-    metric: "#1 TRENDING",
+    client: "CRUNCHY BITES",
+    title: "SNACK ATTACK SLAY",
+    tagline: "CRUNCH LIKE A BOSS",
+    metric: "#1 VIRAL",
     color: "bg-accent-3",
     size: "normal",
     image:
-      "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&q=80",
+      "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=800&q=80",
   },
   {
-    client: "RED BULL",
-    title: "URBAN CLIFF DIVING",
-    tagline: "GIVE YOU WINGS",
-    metric: "8.5M VIEWS",
+    client: "RIZZ GAMES",
+    title: "TRENDSETTER RIZZ",
+    tagline: "LEVEL UP YOUR CHARISMA",
+    metric: "7M VIEWS",
     color: "bg-off-white",
     size: "normal",
     image:
-      "https://images.unsplash.com/photo-1621996659490-3275b4d0d951?w=800&q=80",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80",
   },
 ];
 
