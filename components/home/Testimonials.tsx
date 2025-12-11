@@ -5,24 +5,34 @@ import { useRef } from "react";
 
 const testimonials = [
   {
-    quote: "They understood the assignment.",
-    author: "CMO, TechBrand",
-    role: "Client",
+    quote:
+      "We manufacture light bulbs, not hype. They somehow managed to make our smart energy solutions look as exciting as a fashion drop. The rebrand completely shifted our market perception.",
+    author: "Sarah Chen, CEO",
+    role: "Green Light",
   },
   {
-    quote: "Finally an agency that isn't cringe.",
-    author: "@TopCreator",
-    role: "Partner",
+    quote:
+      "Most agencies don't get Gen Z skin culture. This team didn't just 'get it', they defined it. Our 'Glow-Up' campaign ROI was 300% higher than anything we've done before.",
+    author: "Jessica Miller, Brand Director",
+    role: "Glow Cosmetics",
   },
   {
-    quote: "Numbers went up. Simple.",
-    author: "Founder, E-com",
-    role: "Client",
+    quote:
+      "We needed edge, not corporate polish. They delivered a campaign that felt raw, authentic, and completely aligned with our street culture. 10M shares speaks for itself.",
+    author: "Marcus Thorne, Creative Lead",
+    role: "Vibe Streetwear",
   },
   {
-    quote: "Absolute chaos but it works.",
-    author: "Marketing Lead",
-    role: "Client",
+    quote:
+      "Membership applications crashed our server on launch day. They captured the 'Fit Flex Frenzy' energy perfectly. It wasn't just a gym ad; it was a movement.",
+    author: "David Kovac, Ops Head",
+    role: "Flex Gym",
+  },
+  {
+    quote:
+      "I see a lot of pitch decks. The brands these guys touch don't just grow; they dominate cultural conversation. It's rare to see this level of creative chaos convert so consistently.",
+    author: "Elena Ross, VC Partner",
+    role: "Horizon Ventures",
   },
 ];
 

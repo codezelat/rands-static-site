@@ -36,14 +36,14 @@ const works = [
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80",
   },
   {
-    client: "ECO VOLT",
-    title: "SUSTAINABLE SURGE",
-    tagline: "POWER THE PLANET",
-    metric: "3M SHARES",
-    color: "bg-off-white",
+    client: "GREEN LIGHT",
+    title: "SMART ENERGY",
+    tagline: "INNOVATION THAT MATTERS",
+    metric: "12M VIEWS",
+    color: "bg-accent-1",
     size: "normal",
     image:
-      "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80",
+      "https://images.unsplash.com/photo-1741730066843-855876ec8bbf?w=800&q=80",
   },
 ];
 
