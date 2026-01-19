@@ -108,6 +108,18 @@ export function Footer() {
             </a>
           </div>
         </div>
+
+        <div className="mt-8 pt-8 border-t border-soft-grey/20 text-center md:text-right text-sm text-soft-grey">
+          Developed with ❤️ by{" "}
+          <a
+            href="https://codezela.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent-1 transition-colors font-semibold"
+          >
+            Codezela Technologies
+          </a>
+        </div>
       </div>
     </footer>
   );
