@@ -8,10 +8,10 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
 
 const navItems = [
-  { name: "Work", href: "#work" },
-  { name: "Services", href: "#services" },
-  { name: "Studio", href: "#studio" },
-  { name: "Contact", href: "#contact" },
+  { name: "Work", href: "/#work" },
+  { name: "Services", href: "/#services" },
+  { name: "Studio", href: "/#studio" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export function Header() {

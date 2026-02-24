@@ -208,7 +208,7 @@ rands-static-site/
 
 ### Environment Variables
 
-Create a `.env.local` file for environment-specific configuration:
+Copy `.env.example` to `.env.local` and fill in values:
 
 ```env
 # Analytics (optional - already configured)
@@ -216,6 +216,22 @@ NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 
 # Site URL
 NEXT_PUBLIC_SITE_URL=https://rands.lk
+
+# Cloudflare Turnstile (required for contact + brief forms)
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Brevo email config (required for contact + brief form submissions)
+BREVO_API_KEY=xkeysib-REPLACE_ME
+BREVO_FROM_EMAIL=no-reply@yourcompany.com
+BREVO_FROM_NAME=RANDS Website
+
+# Optional shared fallback recipient
+BREVO_TO_EMAIL=hello@yourcompany.com
+
+# Recommended: separate inboxes per form
+BREVO_CONTACT_TO_EMAIL=hello@yourcompany.com
+BREVO_BRIEF_TO_EMAIL=briefs@yourcompany.com
 ```
 
 ### Image Domains
@@ -224,7 +240,13 @@ External image domains are configured in `next.config.ts`:
 
 ```typescript
 images: {
-  domains: ["images.unsplash.com"],
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "images.unsplash.com",
+      pathname: "/**",
+    },
+  ],
 }
 ```
 
@@ -240,7 +262,8 @@ images: {
 - **Services Cheatsheet**: Quick service breakdown
 - **Process Strip**: 4-step process visualization
 - **Testimonials**: Horizontal scroll testimonial cards
-- **Footer**: CTA, navigation, and social links
+- **Footer**: CTA, contact details, navigation, and social links
+- **Contact Modal**: Global popup contact form with Turnstile verification
 
 ### Brief Page (`/brief`)
 

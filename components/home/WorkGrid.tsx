@@ -9,7 +9,7 @@ const works = [
     client: "GLOW COSMETICS",
     title: "GLOW-UP GLOW",
     tagline: "SLAY YOUR SKIN",
-    metric: "5M VIEWS",
+    focus: "UGC + product storytelling",
     color: "bg-accent-1",
     size: "large", // spans 2 cols
     image:
@@ -19,7 +19,7 @@ const works = [
     client: "VIBE STREETWEAR",
     title: "VIBE CHECK VIBES",
     tagline: "CHECK YOUR VIBE",
-    metric: "10M SHARES",
+    focus: "Trend-led social campaign",
     color: "bg-accent-2",
     size: "tall", // spans 2 rows
     image:
@@ -29,7 +29,7 @@ const works = [
     client: "FLEX GYM",
     title: "FIT FLEX FRENZY",
     tagline: "FLEX YOUR WAY",
-    metric: "6M VIEWS",
+    focus: "Launch content sprint",
     color: "bg-accent-3",
     size: "normal",
     image:
@@ -39,7 +39,7 @@ const works = [
     client: "GREEN LIGHT",
     title: "SMART ENERGY",
     tagline: "INNOVATION THAT MATTERS",
-    metric: "12M VIEWS",
+    focus: "Education-first ad creative",
     color: "bg-accent-1",
     size: "normal",
     image:
@@ -90,8 +90,8 @@ export function WorkGrid() {
                 {work.client}
               </h3>
               <p className="text-xl font-bold mb-6 font-mono">{work.title}</p>
-              <div className="bg-black text-white px-6 py-3 font-mono text-xl border-2 border-white box-shadow-hard transform hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-                {work.metric}
+              <div className="inline-flex items-center border border-white/70 bg-black/55 px-3 py-1.5 font-mono text-sm font-semibold tracking-wide text-white backdrop-blur-sm">
+                {work.focus}
               </div>
             </div>
 

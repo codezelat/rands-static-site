@@ -3,6 +3,12 @@ import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { ReactLenis } from "@/utils/lenis";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { ContactModalProvider } from "@/components/contact/ContactModalProvider";
+import {
+  CONTACT_ADDRESS,
+  CONTACT_PHONE_E164,
+  SITE_URL,
+} from "@/utils/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +23,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rands.agency"), // Replace with actual domain
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Rizz & Slay | Culture First Content Studio",
     template: "%s | Rizz & Slay",
@@ -51,7 +57,7 @@ export const metadata: Metadata = {
     title: "Rizz & Slay | Culture First Content Studio",
     description:
       "Rizz and Slayy is the culture first content and marketing studio that makes brands look like they belong on the For You page.",
-    url: "https://rands.agency",
+    url: SITE_URL,
     siteName: "Rizz & Slay",
     images: [
       {
@@ -85,6 +91,27 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Rizz & Slay",
+  url: SITE_URL,
+  telephone: CONTACT_PHONE_E164,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: CONTACT_ADDRESS,
+    addressLocality: "Colombo",
+    addressCountry: "LK",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: CONTACT_PHONE_E164,
+      contactType: "customer service",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -96,8 +123,16 @@ export default function RootLayout({
         className={`${inter.variable} ${oswald.variable} antialiased bg-background text-foreground font-sans selection:bg-accent-1 selection:text-black`}
         suppressHydrationWarning={true}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         <GoogleAnalytics />
-        <ReactLenis root>{children}</ReactLenis>
+        <ReactLenis root>
+          <ContactModalProvider>{children}</ContactModalProvider>
+        </ReactLenis>
       </body>
     </html>
   );

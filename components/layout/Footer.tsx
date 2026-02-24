@@ -1,10 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import {
+  CONTACT_ADDRESS,
+  CONTACT_MAPS_LINK,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_E164,
+} from "@/utils/site";
 
 export function Footer() {
   return (
-    <footer className="bg-carbon-black text-off-white border-thick-top border-off-white py-12 md:py-20">
+    <footer
+      id="contact"
+      className="bg-carbon-black text-off-white border-thick-top border-off-white py-12 md:py-20"
+    >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12 md:mb-20">
           <div className="max-w-2xl">
@@ -34,42 +43,61 @@ export function Footer() {
                   Submit a Brief
                 </Button>
               </Link>
-              <Link href="https://wa.me/codezela/" target="_blank">
+              <a href={`tel:${CONTACT_PHONE_E164}`}>
                 <Button
                   variant="outline"
                   size="lg"
                   className="border-off-white text-off-white hover:bg-off-white hover:text-black"
                 >
-                  Chat on WhatsApp
+                  Call Us
                 </Button>
-              </Link>
+              </a>
             </div>
-            <p className="mt-4 text-sm text-soft-grey">
-              We reply fast on WhatsApp.
-            </p>
+            <div className="mt-6 space-y-2 text-soft-grey">
+              <p className="text-sm">
+                Tel:{" "}
+                <a
+                  href={`tel:${CONTACT_PHONE_E164}`}
+                  className="text-off-white hover:text-accent-1 transition-colors"
+                >
+                  {CONTACT_PHONE_DISPLAY}
+                </a>
+              </p>
+              <p className="text-sm">
+                Address:{" "}
+                <a
+                  href={CONTACT_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-off-white hover:text-accent-1 transition-colors"
+                >
+                  {CONTACT_ADDRESS}
+                </a>
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col gap-4 text-left md:text-right">
             <Link
-              href="#work"
+              href="/#work"
               className="text-2xl font-bold hover:text-accent-1 transition-colors"
             >
               WORK
             </Link>
             <Link
-              href="#services"
+              href="/#services"
               className="text-2xl font-bold hover:text-accent-1 transition-colors"
             >
               SERVICES
             </Link>
             <Link
-              href="#studio"
+              href="/#studio"
               className="text-2xl font-bold hover:text-accent-1 transition-colors"
             >
               STUDIO
             </Link>
             <Link
-              href="#contact"
+              href="/#contact"
               className="text-2xl font-bold hover:text-accent-1 transition-colors"
             >
               CONTACT

@@ -40,7 +40,11 @@ export function ProcessStrip() {
   }, []);
 
   return (
-    <Section className="bg-carbon-black text-off-white" ref={containerRef}>
+    <Section
+      id="studio"
+      className="bg-carbon-black text-off-white"
+      ref={containerRef}
+    >
       <div className="mb-16 text-center">
         <h2 className="text-4xl md:text-6xl font-display font-bold mb-4">
           CHAOS IN CONTENT, <br />

@@ -1,40 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { cn } from "@/utils/cn";
-
-// --- Zod Schema ---
-const briefSchema = z.object({
-  // Step 1: Contact
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  company: z.string().optional(),
-
-  // Step 2: Project
-  projectType: z.enum(
-    ["Social Content", "Campaign", "Production", "Strategy", "Other"],
-    {
-      message: "Please select a project type",
-    }
-  ),
-  budget: z.enum(["< $5k", "$5k - $10k", "$10k - $50k", "$50k+", "Not sure"], {
-    message: "Please select a budget range",
-  }),
-  description: z.string().min(10, "Tell us a bit more about the project"),
-
-  // Step 3: Details
-  timeline: z.enum(["ASAP", "1-3 Months", "3-6 Months", "Flexible"], {
-    message: "Please select a timeline",
-  }),
-  source: z.string().optional(),
-});
-
-type BriefFormData = z.infer<typeof briefSchema>;
+import {
+  BUDGET_RANGES,
+  PROJECT_TYPES,
+  TIMELINES,
+  briefSchema,
+  type BriefFormData,
+} from "@/utils/brief";
+import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 
 const steps = [
   { id: 1, title: "Who are you?", fields: ["name", "email", "company"] },
@@ -43,34 +22,84 @@ const steps = [
     title: "What's the plan?",
     fields: ["projectType", "budget", "description"],
   },
-  { id: 3, title: "The nitty gritty", fields: ["timeline", "source"] },
+  {
+    id: 3,
+    title: "The nitty gritty",
+    fields: ["timeline", "source", "turnstileToken"],
+  },
 ];
 
 export function BriefForm() {
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
   const {
     register,
     handleSubmit,
     trigger,
+    setValue,
     formState: { errors },
   } = useForm<BriefFormData>({
     resolver: zodResolver(briefSchema),
     mode: "onChange",
+    defaultValues: {
+      website: "",
+      turnstileToken: "",
+    },
   });
 
+  const handleTurnstileToken = useCallback(
+    (token: string | null) => {
+      setValue("turnstileToken", token ?? "", { shouldValidate: true });
+    },
+    [setValue]
+  );
+
   const processForm = async (data: BriefFormData) => {
+    if (!turnstileSiteKey) {
+      setSubmitError("Verification is not configured. Please try again later.");
+      return;
+    }
+
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/brief", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = (await response.json().catch(() => null)) as
+        | { message?: string }
+        | null;
+
+      if (!response.ok) {
+        setSubmitError(
+          result?.message ?? "Failed to submit your brief. Please try again."
+        );
+        setTurnstileResetKey((prev) => prev + 1);
+        return;
+      }
+
+      setIsSuccess(true);
+    } catch {
+      setSubmitError("Network error. Please check your connection and try again.");
+      setTurnstileResetKey((prev) => prev + 1);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const next = async () => {
+    setSubmitError(null);
     const fields = steps[currentStep].fields;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const output = await trigger(fields as any);
@@ -80,7 +109,7 @@ export function BriefForm() {
     if (currentStep < steps.length - 1) {
       setCurrentStep((prev) => prev + 1);
     } else {
-      handleSubmit(processForm)();
+      await handleSubmit(processForm)();
     }
   };
 
@@ -129,6 +158,15 @@ export function BriefForm() {
         onSubmit={handleSubmit(processForm)}
         className="bg-white border-thick p-8 md:p-12 box-shadow-hard relative overflow-hidden"
       >
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+          {...register("website")}
+        />
+        <input type="hidden" {...register("turnstileToken")} />
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
@@ -191,13 +229,7 @@ export function BriefForm() {
                     Project Type
                   </label>
                   <div className="grid grid-cols-2 gap-4">
-                    {[
-                      "Social Content",
-                      "Campaign",
-                      "Production",
-                      "Strategy",
-                      "Other",
-                    ].map((type) => (
+                    {PROJECT_TYPES.map((type) => (
                       <label key={type} className="cursor-pointer">
                         <input
                           type="radio"
@@ -227,11 +259,11 @@ export function BriefForm() {
                     className="w-full bg-white border-thick p-4 text-xl font-bold text-black focus:outline-none focus:bg-accent-1 transition-colors appearance-none cursor-pointer"
                   >
                     <option value="">Select a range</option>
-                    <option value="< $5k">&lt; $5k</option>
-                    <option value="$5k - $10k">$5k - $10k</option>
-                    <option value="$10k - $50k">$10k - $50k</option>
-                    <option value="$50k+">$50k+</option>
-                    <option value="Not sure">Not sure</option>
+                    {BUDGET_RANGES.map((range) => (
+                      <option key={range} value={range}>
+                        {range}
+                      </option>
+                    ))}
                   </select>
                   {errors.budget && (
                     <p className="text-red-500 font-mono text-sm">
@@ -267,7 +299,7 @@ export function BriefForm() {
                     Timeline
                   </label>
                   <div className="grid grid-cols-2 gap-4">
-                    {["ASAP", "1-3 Months", "3-6 Months", "Flexible"].map(
+                    {TIMELINES.map(
                       (time) => (
                         <label key={time} className="cursor-pointer">
                           <input
@@ -300,10 +332,35 @@ export function BriefForm() {
                     placeholder="TikTok, Instagram, Friend..."
                   />
                 </div>
+
+                <div className="space-y-2">
+                  {turnstileSiteKey ? (
+                    <TurnstileWidget
+                      siteKey={turnstileSiteKey}
+                      onTokenChange={handleTurnstileToken}
+                      resetKey={turnstileResetKey}
+                      size="compact"
+                    />
+                  ) : (
+                    <p className="border-2 border-red-600 bg-red-50 text-red-700 p-3 text-sm font-mono">
+                      Verification is not configured.
+                    </p>
+                  )}
+                  {errors.turnstileToken && (
+                    <p className="text-red-500 font-mono text-sm">
+                      {errors.turnstileToken.message}
+                    </p>
+                  )}
+                </div>
               </div>
             )}
           </motion.div>
         </AnimatePresence>
+        {submitError && (
+          <p className="mt-8 border-2 border-red-600 bg-red-50 text-red-700 p-4 font-mono text-sm">
+            {submitError}
+          </p>
+        )}
 
         {/* Navigation */}
         <div className="flex justify-between mt-12 pt-8 border-t-thick">
@@ -322,7 +379,7 @@ export function BriefForm() {
           <button
             type="button"
             onClick={next}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !turnstileSiteKey}
             className="bg-black text-white px-8 py-4 font-bold text-xl hover:bg-accent-3 hover:text-black transition-colors flex items-center gap-2"
           >
             {isSubmitting ? (
