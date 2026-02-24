@@ -223,15 +223,11 @@ TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
 
 # Brevo email config (required for contact + brief form submissions)
 BREVO_API_KEY=xkeysib-REPLACE_ME
-BREVO_FROM_EMAIL=no-reply@yourcompany.com
 BREVO_FROM_NAME=RANDS Website
 
 # Optional shared fallback recipient
-BREVO_TO_EMAIL=hello@yourcompany.com
+BREVO_TO_EMAIL=you@email.com
 
-# Recommended: separate inboxes per form
-BREVO_CONTACT_TO_EMAIL=hello@yourcompany.com
-BREVO_BRIEF_TO_EMAIL=briefs@yourcompany.com
 ```
 
 ### Image Domains

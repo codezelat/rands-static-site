@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import {
   CONTACT_ADDRESS,
+  CONTACT_EMAIL,
   CONTACT_MAPS_LINK,
   CONTACT_PHONE_DISPLAY,
   CONTACT_PHONE_E164,
@@ -61,6 +62,15 @@ export function Footer() {
                   className="text-off-white hover:text-accent-1 transition-colors"
                 >
                   {CONTACT_PHONE_DISPLAY}
+                </a>
+              </p>
+              <p className="text-sm">
+                Email:{" "}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-off-white hover:text-accent-1 transition-colors"
+                >
+                  {CONTACT_EMAIL}
                 </a>
               </p>
               <p className="text-sm">

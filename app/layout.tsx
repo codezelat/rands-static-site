@@ -6,6 +6,7 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { ContactModalProvider } from "@/components/contact/ContactModalProvider";
 import {
   CONTACT_ADDRESS,
+  CONTACT_EMAIL,
   CONTACT_PHONE_E164,
   SITE_URL,
 } from "@/utils/site";
@@ -107,6 +108,7 @@ const organizationJsonLd = {
     {
       "@type": "ContactPoint",
       telephone: CONTACT_PHONE_E164,
+      email: CONTACT_EMAIL,
       contactType: "customer service",
     },
   ],

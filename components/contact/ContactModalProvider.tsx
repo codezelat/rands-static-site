@@ -102,7 +102,7 @@ export function ContactModalProvider({
           <AnimatePresence>
             {isOpen && (
               <div
-                className="fixed inset-0 z-[200] overflow-y-auto overscroll-none p-4 md:p-8"
+                className="fixed inset-0 z-[200] overflow-hidden p-4 md:p-8"
                 style={{
                   paddingTop: "max(1rem, env(safe-area-inset-top))",
                   paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
@@ -118,20 +118,22 @@ export function ContactModalProvider({
                   onClick={() => setIsOpen(false)}
                 />
 
-                <div className="relative min-h-full flex items-start sm:items-center justify-center py-1 md:py-0">
+                <div className="relative h-full flex items-start sm:items-center justify-center py-1 md:py-0">
                   <motion.div
                     role="dialog"
                     aria-modal="true"
                     aria-label="Contact form"
-                    className="w-full max-w-2xl max-h-[calc(100dvh-2rem)] md:max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain bg-background border-thick box-shadow-hard p-3 sm:p-4 md:p-8"
+                    className="w-full max-w-2xl h-[calc(100dvh-2rem)] md:h-auto md:max-h-[calc(100dvh-4rem)] bg-background border-thick box-shadow-hard p-3 sm:p-4 md:p-8 flex flex-col min-h-0"
+                    data-lenis-prevent
+                    data-lenis-prevent-wheel
+                    data-lenis-prevent-touch
                     initial={{ opacity: 0, y: 24, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 24, scale: 0.98 }}
                     transition={{ duration: 0.2 }}
                     onClick={(event) => event.stopPropagation()}
-                    style={{ WebkitOverflowScrolling: "touch" }}
                   >
-                    <div className="flex items-start justify-between gap-4 mb-4 md:mb-6">
+                    <div className="flex items-start justify-between gap-4 mb-4 md:mb-6 shrink-0">
                       <div>
                         <h2 className="text-3xl md:text-5xl font-display font-bold leading-none">
                           LET&apos;S TALK.
@@ -150,7 +152,17 @@ export function ContactModalProvider({
                       </button>
                     </div>
 
-                    <ContactForm />
+                    <div
+                      className="min-h-0 overflow-y-auto overscroll-contain pr-0.5"
+                      data-lenis-prevent
+                      data-lenis-prevent-wheel
+                      data-lenis-prevent-touch
+                      style={{ WebkitOverflowScrolling: "touch" }}
+                      onWheel={(event) => event.stopPropagation()}
+                      onTouchMove={(event) => event.stopPropagation()}
+                    >
+                      <ContactForm />
+                    </div>
                   </motion.div>
                 </div>
               </div>

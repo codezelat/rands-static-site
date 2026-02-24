@@ -1,7 +1,8 @@
-export const SITE_URL = "https://rands.agency";
+export const SITE_URL = "https://rands.lk";
 
 export const CONTACT_PHONE_DISPLAY = "+94 11 485 8899";
 export const CONTACT_PHONE_E164 = "+94114858899";
+export const CONTACT_EMAIL = "hi@rands.lk";
 
 export const CONTACT_ADDRESS = "345/35, RIT Alles Mw, Colombo 08";
 export const CONTACT_MAPS_LINK =
