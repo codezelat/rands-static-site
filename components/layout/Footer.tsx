@@ -119,31 +119,47 @@ export function Footer() {
           <div className="text-sm text-soft-grey">
             © {new Date().getFullYear()} RANDS. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a
-              href="https://www.linkedin.com/company/rands-lk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent-1 transition-colors"
-            >
-              LINKEDIN
-            </a>
-            <a
-              href="https://www.facebook.com/rands.lk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent-1 transition-colors"
-            >
-              FACEBOOK
-            </a>
-            <a
-              href="https://www.instagram.com/rands.lk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent-1 transition-colors"
-            >
-              INSTAGRAM
-            </a>
+          <div className="mt-4 md:mt-0 flex flex-col items-start md:items-end gap-3">
+            <div className="flex gap-6">
+              <a
+                href="https://www.linkedin.com/company/rands-lk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent-1 transition-colors"
+              >
+                LINKEDIN
+              </a>
+              <a
+                href="https://www.facebook.com/rands.lk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent-1 transition-colors"
+              >
+                FACEBOOK
+              </a>
+              <a
+                href="https://www.instagram.com/rands.lk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent-1 transition-colors"
+              >
+                INSTAGRAM
+              </a>
+            </div>
+            <div className="flex gap-4 text-xs font-mono uppercase tracking-wide text-soft-grey">
+              <Link
+                href="/privacy-policy"
+                className="hover:text-accent-1 transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms-of-service"
+                className="hover:text-accent-1 transition-colors"
+              >
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
 

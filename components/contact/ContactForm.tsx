@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Send } from "lucide-react";
+import Link from "next/link";
 import { contactSchema, type ContactFormData } from "@/utils/contact";
 import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 
@@ -196,6 +197,24 @@ export function ContactForm() {
           {submitError}
         </p>
       )}
+
+      <p className="text-xs md:text-sm font-mono text-black/75 leading-relaxed">
+        By submitting this form, you agree to our{" "}
+        <Link
+          href="/terms-of-service"
+          className="underline underline-offset-2 hover:text-accent-3 transition-colors"
+        >
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link
+          href="/privacy-policy"
+          className="underline underline-offset-2 hover:text-accent-3 transition-colors"
+        >
+          Privacy Policy
+        </Link>
+        .
+      </p>
 
       <button
         type="submit"

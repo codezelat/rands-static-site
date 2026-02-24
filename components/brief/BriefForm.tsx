@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/utils/cn";
 import {
   BUDGET_RANGES,
@@ -359,6 +360,25 @@ export function BriefForm() {
         {submitError && (
           <p className="mt-8 border-2 border-red-600 bg-red-50 text-red-700 p-4 font-mono text-sm">
             {submitError}
+          </p>
+        )}
+        {currentStep === steps.length - 1 && (
+          <p className="mt-8 text-sm font-mono text-black/75 leading-relaxed">
+            By submitting this brief, you agree to our{" "}
+            <Link
+              href="/terms-of-service"
+              className="underline underline-offset-2 hover:text-accent-3 transition-colors"
+            >
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/privacy-policy"
+              className="underline underline-offset-2 hover:text-accent-3 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            .
           </p>
         )}
 
