@@ -1,7 +1,25 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Section } from "@/components/ui/Section";
 import { BriefForm } from "@/components/brief/BriefForm";
+import { SITE_URL } from "@/utils/site";
+
+export const metadata: Metadata = {
+  title: "Submit a Brief",
+  description:
+    "Submit your project brief to Rizz & Slay. Share your goals, budget, and timeline, and our team will get back to you fast.",
+  alternates: {
+    canonical: "/brief",
+  },
+  openGraph: {
+    title: "Submit a Brief | Rizz & Slay",
+    description:
+      "Tell us what you are planning. We will help you script, shoot, and scale campaigns that actually move.",
+    url: `${SITE_URL}/brief`,
+    type: "website",
+  },
+};
 
 export default function BriefPage() {
   return (

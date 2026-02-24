@@ -1,4 +1,7 @@
-export const SITE_URL = "https://rands.lk";
+const DEFAULT_SITE_URL = "https://rands.lk";
+const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const resolvedSiteUrl = envSiteUrl && envSiteUrl.length > 0 ? envSiteUrl : DEFAULT_SITE_URL;
+export const SITE_URL = resolvedSiteUrl.replace(/\/+$/, "");
 
 export const CONTACT_PHONE_DISPLAY = "+94 11 485 8899";
 export const CONTACT_PHONE_E164 = "+94114858899";

@@ -1,12 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+
+export const metadata: Metadata = {
+  title: "404",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center text-center p-4 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/grid.png')] bg-repeat opacity-20" />
+        <div className="absolute top-0 left-0 w-full h-full [background-image:linear-gradient(var(--foreground)_1px,transparent_1px),linear-gradient(90deg,var(--foreground)_1px,transparent_1px)] [background-size:28px_28px] opacity-10" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto">

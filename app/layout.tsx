@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { ReactLenis } from "@/utils/lenis";
@@ -25,6 +25,11 @@ const oswald = Oswald({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  applicationName: "Rizz & Slay",
+  manifest: "/manifest.webmanifest",
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Rizz & Slay | Culture First Content Studio",
     template: "%s | Rizz & Slay",
@@ -77,7 +82,6 @@ export const metadata: Metadata = {
     description:
       "Rizz and Slayy is the culture first content and marketing studio that makes brands look like they belong on the For You page.",
     images: ["/images/logo.png"],
-    creator: "@rizzandslay", // Placeholder
   },
   robots: {
     index: true,
@@ -90,6 +94,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#CCFF00",
 };
 
 const organizationJsonLd = {
