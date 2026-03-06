@@ -61,19 +61,23 @@ export function FeaturedReel() {
           muted={isMuted}
           playsInline
           preload="none"
+          title="Rizz and Slay featured showreel - content studio Sri Lanka"
           onWaiting={() => setIsLoading(true)}
           onCanPlay={() => setIsLoading(false)}
           onPlaying={() => setIsLoading(false)}
           onLoadStart={() => setIsLoading(true)}
         >
           <source src="/videos/new.mp4" type="video/mp4" />
+          <track kind="descriptions" label="English" srcLang="en" default />
         </video>
 
         {/* Play/Pause Control - Industry Standard Center Button */}
         <div
           className={cn(
             "absolute inset-0 flex items-center justify-center z-10 transition-all duration-300",
-            isPlaying ? "opacity-0 hover:opacity-100 bg-black/20 backdrop-blur-none hover:backdrop-blur-sm" : "opacity-100 bg-black/40 backdrop-blur-sm"
+            isPlaying
+              ? "opacity-0 hover:opacity-100 bg-black/20 backdrop-blur-none hover:backdrop-blur-sm"
+              : "opacity-100 bg-black/40 backdrop-blur-sm",
           )}
         >
           <button
@@ -110,10 +114,14 @@ export function FeaturedReel() {
 
         {/* Status Label */}
         <div className="absolute top-6 left-6 md:top-8 md:left-8 pointer-events-none z-20">
-          <div className={cn(
-            "px-3 py-1 border border-white/20 font-mono text-xs md:text-sm font-bold transition-colors duration-300 backdrop-blur-md",
-            isPlaying ? "bg-accent-2 text-black border-black animate-pulse" : "bg-black/50 text-white/70"
-          )}>
+          <div
+            className={cn(
+              "px-3 py-1 border border-white/20 font-mono text-xs md:text-sm font-bold transition-colors duration-300 backdrop-blur-md",
+              isPlaying
+                ? "bg-accent-2 text-black border-black animate-pulse"
+                : "bg-black/50 text-white/70",
+            )}
+          >
             {isPlaying ? "NOW PLAYING" : "PAUSED"}
           </div>
         </div>

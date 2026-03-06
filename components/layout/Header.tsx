@@ -67,25 +67,30 @@ export function Header() {
       <div
         className={cn(
           "fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
+          isMenuOpen ? "translate-x-0" : "translate-x-full",
         )}
         style={{ top: "80px", height: "calc(100vh - 80px)" }}
       >
-        {navItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className="text-4xl font-display font-bold uppercase hover:text-accent-1 transition-colors"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {item.name}
+        <nav
+          aria-label="Mobile navigation"
+          className="flex flex-col items-center gap-8"
+        >
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-4xl font-display font-bold uppercase hover:text-accent-1 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+          <Link href="/brief" onClick={() => setIsMenuOpen(false)}>
+            <Button size="lg" className="mt-8">
+              Book a Project
+            </Button>
           </Link>
-        ))}
-        <Link href="/brief" onClick={() => setIsMenuOpen(false)}>
-          <Button size="lg" className="mt-8">
-            Book a Project
-          </Button>
-        </Link>
+        </nav>
       </div>
     </header>
   );

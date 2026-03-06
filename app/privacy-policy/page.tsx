@@ -8,16 +8,22 @@ import { CONTACT_ADDRESS, CONTACT_EMAIL, SITE_URL } from "@/utils/site";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Read how RANDS collects, uses, and protects information submitted through our website and forms.",
+    "Read how Rizz & Slay (RANDS) collects, uses, and protects information submitted through our website and forms.",
   alternates: {
     canonical: "/privacy-policy",
   },
   openGraph: {
-    title: "Privacy Policy | RANDS",
+    title: "Privacy Policy | Rizz & Slay",
     description:
-      "Read how RANDS collects, uses, and protects information submitted through our website and forms.",
+      "Read how Rizz & Slay (RANDS) collects, uses, and protects information submitted through our website and forms.",
     url: `${SITE_URL}/privacy-policy`,
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy | Rizz & Slay",
+    description:
+      "Read how Rizz & Slay (RANDS) collects, uses, and protects your information.",
   },
 };
 
@@ -59,11 +65,14 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-display font-bold">Third-Party Tools</h2>
+            <h2 className="text-2xl font-display font-bold">
+              Third-Party Tools
+            </h2>
             <p className="font-medium">
               Form submissions are processed through Brevo for transactional
-              email delivery. Spam prevention is handled by Cloudflare Turnstile.
-              We may also use analytics providers to understand site usage.
+              email delivery. Spam prevention is handled by Cloudflare
+              Turnstile. We may also use analytics providers to understand site
+              usage.
             </p>
           </section>
 

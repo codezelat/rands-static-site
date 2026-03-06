@@ -36,7 +36,7 @@ export function Hero() {
             duration: 1,
             ease: "power4.out",
             delay: 0.2,
-          }
+          },
         );
       }
     }, containerRef);
@@ -82,8 +82,8 @@ export function Hero() {
           <div className="max-w-xl">
             <h2 className="text-xl md:text-3xl font-bold mb-8 leading-tight">
               Rizz and Slayy is a production first content studio and marketing
-              partner. We script, shoot and scale campaigns that live where your
-              audience{" "}
+              partner in Sri Lanka. We script, shoot and scale campaigns that
+              live where your audience{" "}
               <span className="bg-accent-1 px-1 text-black">
                 actually scrolls.
               </span>
@@ -113,7 +113,11 @@ export function Hero() {
         </div>
 
         {/* Right Content - 3D Scene */}
-        <div className="h-[50vh] lg:h-[80vh] w-full relative border-thick bg-soft-grey self-center lg:self-start mt-12 lg:mt-0">
+        <div
+          className="h-[50vh] lg:h-[80vh] w-full relative border-thick bg-soft-grey self-center lg:self-start mt-12 lg:mt-0"
+          role="img"
+          aria-label="Interactive 3D brand visualization for Rizz and Slay content studio"
+        >
           <Scene />
 
           {/* Decorative elements */}

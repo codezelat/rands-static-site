@@ -66,7 +66,7 @@ export function WorkGrid() {
             className={cn(
               "group relative border-thick p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 box-shadow-hard hover:shadow-none overflow-hidden",
               work.size === "large" && "md:col-span-2",
-              work.size === "tall" && "md:row-span-2"
+              work.size === "tall" && "md:row-span-2",
             )}
           >
             <Image
@@ -83,10 +83,13 @@ export function WorkGrid() {
             <div
               className={cn(
                 "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-8 z-10 backdrop-blur-sm",
-                work.color
+                work.color,
               )}
             >
-              <h3 className="text-5xl font-display font-bold mb-2 tracking-tighter transform group-hover:scale-110 transition-transform duration-300">
+              <h3
+                aria-hidden="true"
+                className="text-5xl font-display font-bold mb-2 tracking-tighter transform group-hover:scale-110 transition-transform duration-300"
+              >
                 {work.client}
               </h3>
               <p className="text-xl font-bold mb-6 font-mono">{work.title}</p>

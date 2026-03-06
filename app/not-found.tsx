@@ -3,10 +3,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "404",
+  title: "Page Not Found",
+  description:
+    "The page you are looking for does not exist. Head back to Rizz & Slay to explore our content studio and marketing services.",
   robots: {
     index: false,
-    follow: false,
+    follow: true,
   },
 };
 

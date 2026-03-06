@@ -8,16 +8,22 @@ import { CONTACT_EMAIL, SITE_URL } from "@/utils/site";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Read the terms governing enquiries, project discussions, and services provided by RANDS.",
+    "Read the terms governing enquiries, project discussions, and services provided by Rizz & Slay (RANDS).",
   alternates: {
     canonical: "/terms-of-service",
   },
   openGraph: {
-    title: "Terms of Service | RANDS",
+    title: "Terms of Service | Rizz & Slay",
     description:
-      "Read the terms governing enquiries, project discussions, and services provided by RANDS.",
+      "Read the terms governing enquiries, project discussions, and services provided by Rizz & Slay (RANDS).",
     url: `${SITE_URL}/terms-of-service`,
     type: "article",
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms of Service | Rizz & Slay",
+    description:
+      "Read the terms governing enquiries, project discussions, and services provided by Rizz & Slay (RANDS).",
   },
 };
 
@@ -71,7 +77,9 @@ export default function TermsOfServicePage() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-display font-bold">Intellectual Property</h2>
+            <h2 className="text-2xl font-display font-bold">
+              Intellectual Property
+            </h2>
             <p className="font-medium">
               Unless otherwise agreed in writing, all concepts, drafts, and
               materials remain the property of their respective owners until
