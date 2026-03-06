@@ -83,14 +83,6 @@ export const metadata: Metadata = {
       "Sri Lanka's leading culture-first content studio. Short-form video production, TikTok marketing, viral campaigns, and influencer marketing from Colombo to the world.",
     url: SITE_URL,
     siteName: "Rizz & Slay",
-    images: [
-      {
-        url: "/images/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Rizz & Slay - Culture First Content Studio in Sri Lanka",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -100,7 +92,6 @@ export const metadata: Metadata = {
       "Rizz & Slay (RANDS) | #1 Content Studio & TikTok Marketing Agency in Sri Lanka",
     description:
       "Sri Lanka's leading culture-first content studio. Short-form video, TikTok marketing, viral campaigns & influencer marketing.",
-    images: ["/images/logo.png"],
   },
   robots: {
     index: true,
